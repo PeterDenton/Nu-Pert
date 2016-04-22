@@ -1,0 +1,7 @@
+*.o
+*.d
+data
+fig
+py
+matplotlibrc
+main
