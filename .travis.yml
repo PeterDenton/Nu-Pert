@@ -1,11 +1,11 @@
 language: cpp
 
 compiler:
-	- gcc
-	- clang
+  - gcc
+  - clang
 
 before_script:
-	- mkdir obj data fig
+  - mkdir obj data fig
 
 script:
-	- make
+  - make
