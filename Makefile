@@ -11,6 +11,7 @@ $(Executable): $(Objects)
 	$(CC) $(Objects) -o $@
 
 obj/%.o: src/%.cpp
+	@mkdir -p $(@D)
 	$(CC) $(CFlags) $< -o $@
 
 -include $(Objects:.o=.d)

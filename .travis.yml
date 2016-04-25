@@ -4,8 +4,5 @@ compiler:
   - gcc
   - clang
 
-before_script:
-  - mkdir obj data fig
-
 script:
   - make
