@@ -122,3 +122,9 @@ void All_Figures()
 	Pmu2e_Precision();
 }
 } // namespace Figures
+
+int main()
+{
+	Figures::All_Figures();
+	return 0;
+}

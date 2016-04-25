@@ -38,3 +38,8 @@ void Example1()
 	std::cout << "P(nubar_mu->nubar_e) at second order: ";
 	std::cout << P << std::endl;
 }
+
+int main()
+{
+	Example1();
+}
