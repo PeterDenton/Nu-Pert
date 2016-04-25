@@ -9,3 +9,5 @@ compiler:
 
 script:
   - make
+  - Examples
+  - Figures
