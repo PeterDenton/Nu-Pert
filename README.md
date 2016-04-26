@@ -1,7 +1,9 @@
 Nu-Pert
 =
 
-[![Build Status](https://travis-ci.org/PeterDenton/Nu-Pert.svg?branch=master)](https://travis-ci.org/PeterDenton/Nu-Pert)
+| master | dev | version |
+|:------:|:---:|:-------:|
+|[![Build Status](https://travis-ci.org/PeterDenton/Nu-Pert.svg?branch=master)](https://travis-ci.org/PeterDenton/Nu-Pert)|[![Build Status](https://travis-ci.org/PeterDenton/Nu-Pert.svg?branch=dev)](https://travis-ci.org/PeterDenton/Nu-Pert)|[![GitHub Version](https://badge.fury.io/gh/PeterDenton%2FNu-Pert.svg)](http://badge.fury.io/gh/PeterDenton%2FNu-Pert)|
 
 ## Overview
 This code provides a very precise, yet still useful analytically, means of calculating the neurtino transition probabilities in uniform matter densities.
@@ -21,7 +23,7 @@ The various namespaces throughout the code refer to the various steps and means 
 First, the `Hat` namespace is in reference to the intermediate basis after the 23 and 13 rotations.
 The `Hat` namespace refers to the results from the [arXiv:1505.01826](https://arxiv.org/abs/1505.01826) paper by S. Parke and H. Minakata.
 This namespace contains the eigenvalues and the angle phi.
-This namespace also includes the explicit formulas for P(nu<sub>e</sub>-&gt;nu<sub>e</sub>) and P(nu<sub>e</sub>-&gt;nu<sub>mu</sub>) in this basis.
+This namespace also includes the explicit formulas for P(nu<sub>e</sub> -&gt; nu<sub>e</sub>) and P(nu<sub>e</sub> -&gt; nu<sub>mu</sub>) in this basis.
 
 Next is the `Check` namespace which is in reference to the final basis after an additional 12 rotation.
 This namespace contains the final eigenvalues at zeroth and second order (zeroth order also contains all first order corrections), and the angle psi.
@@ -39,10 +41,10 @@ Since there is no consistent way for all channels to switch the mass ordering, w
 See Examples.cpp for several examples.
 
 ## Some further notes
-The antineutrino transition probabilities are the same as the neutrino transition probabilities except with E-&gt;-E.
-That is, L/E-&gt;-L/E and a-&gt;-a.
+The antineutrino transition probabilities are the same as the neutrino transition probabilities except with E -&gt; -E.
+That is, <nobr>L/E -&gt; -L/E</nobr> and a -&gt; -a.
 
-P(nu<sub>a</sub>-&gt;nu<sub>b</sub>) is related to P(nu<sub>b</sub>-&gt;nu<sub>a</sub>) by sending L-&gt;-L.
+P(nu<sub>a</sub> -&gt; nu<sub>b</sub>) is related to P(nu<sub>b</sub> -&gt; nu<sub>a</sub>) by sending L -&gt; -L.
 
 ## Support
 If you have questions or encounter any problems when running *Nu-Pert*, please use github's [issue tracker](https://github.com/PeterDenton/Nu-Pert/issues).
