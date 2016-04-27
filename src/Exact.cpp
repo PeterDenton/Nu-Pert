@@ -46,19 +46,19 @@ double c23msq(double D, double delta);
 double cdeltam(double D, double delta);
 double sdeltam(double D, double delta);
 
-// eq 18
+// See eq. 18
 double M1sqn(double D)
 {
 	double x = sqrt(pow(A(D), 2) - 3 * B(D));
 	return (A(D) / 3.) - x * S(D) / 3 - sqrt(3) * x * sqrt(1 - pow(S(D), 2)) / 3;
 }
-// eq 19
+// See eq. 19
 double M2sqn(double D)
 {
 	double x = sqrt(pow(A(D), 2) - 3 * B(D));
 	return (A(D) / 3.) - x * S(D) / 3 + sqrt(3) * x * sqrt(1 - pow(S(D), 2)) / 3;
 }
-// eq 20
+// See eq. 20
 double M3sqn(double D)
 {
 	double x = sqrt(pow(A(D), 2) - 3 * B(D));
@@ -88,50 +88,50 @@ double DM32sq(double D)
 {
 	return M3sq(D) - M2sq(D);
 }
-// eq 21
+// See eq. 21
 double A(double D)
 {
 	return Dmsq21 + Dmsq31 + D;
 }
-// eq 22
+// See eq. 22
 double B(double D)
 {
 	return Dmsq31 * Dmsq21 + D * (Dmsq31 * c13sq + Dmsq21 * (c13sq * c12sq + s13sq));
 }
-// eq 23
+// See eq. 23
 double C(double D)
 {
 	return D * Dmsq31 * Dmsq21 * c13sq * c12sq;
 }
-// eq 24
+// See eq. 24
 double S(double D)
 {
 	double x = 2 * pow(A(D), 3) - 9 * A(D) * B(D) + 27 * C(D);
 	double y = 2 * pow(pow(A(D), 2) - 3 * B(D), 1.5);
 	return cos((1. / 3) * acos(x / y));
 }
-// eq 43
+// See eq. 43
 double alpha()
 {
 	return Dmsq31 * c13sq + Dmsq21 * (c13sq * c12sq + s13sq);
 }
-// eq 44
+// See eq. 44
 double beta()
 {
 	return Dmsq31 * c13sq * Dmsq21 * c12sq;
 }
-// eq 45
+// See eq. 45
 double E(double D)
 {
 	return (Dmsq31 * (M3sq(D) - Dmsq21) - Dmsq21 * (M3sq(D) - Dmsq31) * s12sq) * c13 * s13;
 }
-// eq 46
+// See eq. 46
 double F(double D)
 {
 	return (M3sq(D) - Dmsq31) * Dmsq21 * c12 * s12 * c13;
 }
 // angles in matter
-// eq 47
+// See eq. 47
 double s12msq(double D)
 {
 	double x = (pow(M2sq(D), 2) - alpha() * M2sq(D) + beta()) * DM31sq(D);
@@ -143,7 +143,7 @@ double c12msq(double D)
 {
 	return 1 - s12msq(D);
 }
-// eq 48
+// See eq. 48
 double s13msq(double D)
 {
 	return (pow(M3sq(D), 2) - alpha() * M3sq(D) + beta()) / (DM31sq(D) * DM32sq(D));
@@ -152,7 +152,7 @@ double c13msq(double D)
 {
 	return 1 - s13msq(D);
 }
-// eq 49
+// See eq. 49
 double s23msq(double D, double delta)
 {
 	return (pow(E(D), 2) * s23sq + pow(F(D), 2) * c23sq + 2 * E(D) * F(D) * c23 * s23 * cos(delta)) / (pow(E(D), 2) + pow(F(D), 2));
@@ -212,7 +212,7 @@ double Palphabeta(int alpha, int beta, double a, double LE, double delta)
 
 	double L2E = km_per_GeV_to_per_eV2 * LE / 2; // in eV^-2 now
 
-	// see eq 3.12 in arXiv:1505.01826
+	// See eq. 4.0.1 or eq. 3.12 in arXiv:1505.01826
 	std::complex<double> A(0, 0);
 	A += Talphabetai(alpha, beta, 0, a, delta) * std::complex<double>(cos(M1sq(a) * L2E), -sin(M1sq(a) * L2E));
 	A += Talphabetai(alpha, beta, 1, a, delta) * std::complex<double>(cos(M2sq(a) * L2E), -sin(M2sq(a) * L2E));

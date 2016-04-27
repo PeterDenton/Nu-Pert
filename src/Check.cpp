@@ -22,6 +22,7 @@ double l3(double a)
 {
 	return l30(a) + l32(a);
 }
+// See eq. 2.4.5
 double l10(double a)
 {
 	double c = cos(Hat::phi(a) - t13);
@@ -29,6 +30,7 @@ double l10(double a)
 	double y = pow(Hat::l0(a) - Hat::lm(a), 2) + pow(2 * eps * c12 * s12 * Dmsqee * c, 2);
 	return (x - sqrt(y)) / 2.;
 }
+// See eq. 2.4.5
 double l20(double a)
 {
 	double c = cos(Hat::phi(a) - t13);
@@ -36,18 +38,22 @@ double l20(double a)
 	double y = pow(Hat::l0(a) - Hat::lm(a), 2) + pow(2 * eps * c12 * s12 * Dmsqee * c, 2);
 	return (x + sqrt(y)) / 2.;
 }
+// See eq. 2.4.5
 double l30(double a)
 {
 	return Hat::lp(a);
 }
+// See eq. 3.1.3
 double l12(double a)
 {
 	return -pow(epsp(a) * Dmsqee * sin(psi(a)), 2) / (l30(a) - l10(a));
 }
+// See eq. 3.1.3
 double l22(double a)
 {
 	return -pow(epsp(a) * Dmsqee * cos(psi(a)), 2) / (l30(a) - l20(a));
 }
+// See eq. 3.1.3
 double l32(double a)
 {
 	return pow(epsp(a) * Dmsqee, 2) * (pow(sin(psi(a)), 2) / (l30(a) - l10(a)) + pow(cos(psi(a)), 2) / (l30(a) - l20(a)));
@@ -76,10 +82,12 @@ double Dl32(double a, int order)
 	else
 		return l3(a) - l2(a);
 }
+// See eq. 2.4.9
 double c2psi(double a)
 {
 	return (Hat::l0(a) - Hat::lm(a)) / (l20(a) - l10(a));
 }
+// See eq. 2.4.7
 double s2psi(double a)
 {
 	double c = cos(Hat::phi(a) - t13);
@@ -89,6 +97,7 @@ double psi(double a)
 {
 	return atan2(s2psi(a), c2psi(a)) / 2.;
 }
+// See table 1
 double Jrm(double a)
 {
 	return c23 * s23 * pow(cos(Hat::phi(a)), 2) * sin(Hat::phi(a)) * cos(psi(a)) * sin(psi(a));
@@ -103,7 +112,7 @@ Matrix<double> W(double a, int order)
 	switch (order)
 	{
 		case 2:
-			// second order
+			// Second order from eq. 3.2.6
 			coef = -pow(epsp(a) * Dmsqee, 2) / 2.;
 			W(0, 0) += coef * pow(sin(psi(a)) / Dl31(a), 2);
 			W(1, 1) += coef * pow(cos(psi(a)) / Dl32(a), 2);
@@ -112,8 +121,7 @@ Matrix<double> W(double a, int order)
 			W(0, 1) += -coef * s2psi(a) / (Dl32(a) * Dl21(a));
 
 		case 1:
-			// first order
-			// dagger is accounted for
+			// First order from eq. 3.2.5
 			e31 = epsp(a) * Dmsqee * sin(psi(a)) / Dl31(a);
 			e32 = epsp(a) * Dmsqee * cos(psi(a)) / Dl32(a);
 			W(0, 2) += -e31;
@@ -128,10 +136,12 @@ Matrix<double> W(double a, int order)
 	}
 	return W;
 }
+// See eq. 2.5.2
 Matrix<std::complex<double> > UMNSm(double a, double delta)
 {
 	return U23(delta) * double2complex(U13(Hat::phi(a)) * U12(psi(a)));
 }
+// See eq. 3.2.3
 Matrix<std::complex<double> > V(double a, double delta, int order)
 {
 	assert (order >= 0 && order <= 2); // order valid for 0, 1, 2
@@ -171,7 +181,7 @@ double Palphabeta(int alpha, int beta, double a, double LE, double delta, int or
 		l3 = Check::l3(a);
 	}
 
-	// see eq 3.12 in arXiv:1505.01826
+	// See eq. 4.0.1 or eq. 3.12 in arXiv:1505.01826
 	std::complex<double> A(0, 0);
 	A += Talphabetai(alpha, beta, 0, a, delta, order) * std::complex<double>(cos(l1 * L2E), -sin(l1 * L2E));
 	A += Talphabetai(alpha, beta, 1, a, delta, order) * std::complex<double>(cos(l2 * L2E), -sin(l2 * L2E));

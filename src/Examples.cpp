@@ -15,7 +15,7 @@ void Example1()
 	int alpha = 1;					// muon type neutrino
 	int beta = 0;					// electron type neutrino
 	double delta = 3 * M_PI / 2;	// The CP phase
-	int exp_num = 0;				// 0 - DUNE, 1 - NOvA, 2 - T2K(HK)
+	int exp_num = 0;				// 0 - DUNE, 1 - NOvA, 2 - T2K/T2HK
 	double E = 2.5;					// neutrino energy in GeV
 	int order = 0;					// Zeroth order in the perturbative expansion
 	E *= -1;						// Negative energy for antineutrinos

@@ -13,6 +13,7 @@
 
 namespace Figures
 {
+// See figure 1
 void Eigenvalues()
 {
 	double a;
@@ -31,6 +32,7 @@ void Eigenvalues()
 		data[i].close();
 	}
 }
+// See figure 1
 void Phases()
 {
 	std::ofstream data[2];
@@ -50,6 +52,7 @@ void Phases()
 		data[i].close();
 	} // i, ordering
 }
+// See figure 2
 void Expansion_Parameter()
 {
 	std::ofstream data[2];
@@ -72,6 +75,7 @@ void Expansion_Parameter()
 	}
 
 }
+// See figure 3
 void Pmu2e_Precision()
 {
 	std::ofstream data("data/Pmu2e_Precision.txt");
@@ -114,17 +118,13 @@ void Pmu2e_Precision()
 	} // E
 	data.close();
 }
-void All_Figures()
-{
-	Eigenvalues();
-	Expansion_Parameter();
-	Phases();
-	Pmu2e_Precision();
-}
 } // namespace Figures
-
 int main()
 {
-	Figures::All_Figures();
+	Figures::Eigenvalues();
+	Figures::Expansion_Parameter();
+	Figures::Phases();
+	Figures::Pmu2e_Precision();
+
 	return 0;
 }

@@ -27,10 +27,14 @@ const double t12 = asin(s12);
 const double t23 = asin(s23);
 const double t13 = asin(s13);
 
+// See eq. A.7.2
 const double Jr = c12 * s12 * c23 * s23 * c13sq * s13;
 
+// See eq. 2.2.3
 double Dmsqee = Dmsq31 - s12sq * Dmsq21;
+// See eq. 2.2.4
 double eps = Dmsq21 / Dmsqee;
+// See eq. 2.5.4
 double epsp(double a)
 {
 	return eps * sin(Hat::phi(a) - t13) * c12 * s12;
@@ -51,6 +55,7 @@ void set_ordering(bool _normal)
 	Dmsqee = Dmsq31 - s12sq * Dmsq21;
 	eps = Dmsq21 / Dmsqee;
 }
+// See eq. 2.1.4
 Matrix<std::complex<double> > U23(double delta, double angle)
 {
 	std::complex<double> eid(cos(delta), sin(delta));
@@ -62,6 +67,7 @@ Matrix<std::complex<double> > U23(double delta, double angle)
 	ret(2, 2) = cos(angle);
 	return ret;
 }
+// See eq. 2.1.4
 Matrix<double> U13(double angle)
 {
 	Matrix<double> ret(3, 3);
@@ -72,6 +78,7 @@ Matrix<double> U13(double angle)
 	ret(2, 2) = cos(angle);
 	return ret;
 }
+// See eq. 2.1.4
 Matrix<double> U12(double angle)
 {
 	Matrix<double> ret(3, 3);
@@ -82,7 +89,8 @@ Matrix<double> U12(double angle)
 	ret(2, 2) = 1;
 	return ret;
 }
-Matrix<std::complex<double> > UPMNS(double delta)
+// See before eq. 2.1.4
+Matrix<std::complex<double> > UMNS(double delta)
 {
 	return U23(delta) * double2complex(U13() * U12());
 }

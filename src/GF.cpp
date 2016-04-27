@@ -13,6 +13,7 @@ This file contains the transition probabilities calculated to zeroth or first or
 
 namespace GF
 {
+// See eqs. 4.1.1, 4.2.2
 double ReUm4(double a, double delta, int alpha, int beta, int w, int x, int y, int z)
 {
 	assert (alpha >= 0 && alpha <= 2); // alpha valid for 0, 1, 2
@@ -26,6 +27,7 @@ double ReUm4(double a, double delta, int alpha, int beta, int w, int x, int y, i
 
 	return std::real(U(alpha, w) * std::conj(U(beta, x) * U(alpha, y)) * U(beta, z));
 }
+// See eq. 4.2.2
 double F1(int alpha, int Beta, double a, double delta)
 {
 	double spsi = sin(Check::psi(a));
@@ -36,6 +38,7 @@ double F2(int alpha, int Beta, double a, double delta)
 	double cpsi = cos(Check::psi(a));
 	return cpsi * (ReUm4(a, delta, alpha, Beta, 2, 1, 0, 0) + ReUm4(a, delta, alpha, Beta, 1, 2, 0, 0));
 }
+// See eq. 4.2.2
 double G1(int alpha, int Beta, double a, double delta)
 {
 	double spsi = sin(Check::psi(a));
@@ -52,6 +55,7 @@ double G2(int alpha, int Beta, double a, double delta)
 	return cpsi * std::real((U(alpha, 1) * std::conj(U(Beta, 2)) + U(alpha, 2) * std::conj(U(Beta, 1)))
 				* (2. * std::conj(U(alpha, 2)) * U(Beta, 2) - deltaalphabeta));
 }
+// See tables 1 and 2
 double C21(int alpha, int Beta, double a, double delta, int order)
 {
 	assert (order >= 0 && order <= 1); // order valid for 0, 1
@@ -64,6 +68,7 @@ double C21(int alpha, int Beta, double a, double delta, int order)
 	double C211 = C1 * (F1 / Dl31 + F2 / Dl32);
 	return C210 + order * C211;
 }
+// See tables 1 and 2
 double C31(int alpha, int Beta, double a, double delta, int order)
 {
 	assert (order >= 0 && order <= 1); // order valid for 0, 1
@@ -77,6 +82,7 @@ double C31(int alpha, int Beta, double a, double delta, int order)
 	double C311 = C1 * ((F1 + G1) / Dl31 - F2 / Dl32);
 	return C310 + order * C311;
 }
+// See tables 1 and 2
 double C32(int alpha, int Beta, double a, double delta, int order)
 {
 	assert (order >= 0 && order <= 1); // order valid for 0, 1
@@ -116,6 +122,7 @@ double D(int alpha, int Beta, double a, double delta, int order)
 		D *= -1;
 	return D;
 }
+// See eq. 4.2.1
 double Palphabeta(int alpha, int beta, double a, double LE, double delta, int order)
 {
 	assert (alpha >= 0 && alpha <= 2); // alpha valid for 0, 1, 2

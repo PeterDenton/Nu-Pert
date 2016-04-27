@@ -34,6 +34,6 @@ Matrix<std::complex<double> > U23(double delta, double angle = t23);
 Matrix<double> U13(double angle = t13);
 Matrix<double> U12(double angle = t12);
 
-Matrix<std::complex<double> > UPMNS(double delta);
+Matrix<std::complex<double> > UMNS(double delta);
 
 #endif

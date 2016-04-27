@@ -1,5 +1,6 @@
 /*
-This basis is that after two rotations and is the same as that presented in arXiv:1505.01826
+This basis is that after two rotations and is the same as that presented in arXiv:1505.01826.
+Equation numbers in parantheses refer to arXiv:1505.01826.
 */
 #include <cmath>
 #include <complex>
@@ -10,10 +11,12 @@ This basis is that after two rotations and is the same as that presented in arXi
 
 namespace Hat
 {
+// See eq. 2.3.5 (2.5)
 double c2phi(double a)
 {
 	return (Dmsqee * cos(2 * t13) - a) / (lp(a) - lm(a));
 }
+// See eq. 2.3.4 (2.5)
 double s2phi(double a)
 {
 	return Dmsqee * sin(2 * t13) / (lp(a) - lm(a));
@@ -22,7 +25,7 @@ double phi(double a)
 {
 	return atan2(s2phi(a), c2phi(a)) / 2.;
 }
-// From eq. 3.1
+// See eq. 2.3.3 (3.1)
 double lm(double a)
 {
 	double x = Dmsqee + a;
@@ -30,10 +33,12 @@ double lm(double a)
 	double z = eps * Dmsqee * s12sq;
 	return (x - y) / 2. + z;
 }
+// See eq. 2.3.3 (3.1)
 double l0(double a)
 {
 	return c12sq * eps * Dmsqee;
 }
+// See eq. 2.3.3 (3.1)
 double lp(double a)
 {
 	double x = Dmsqee + a;
@@ -41,7 +46,7 @@ double lp(double a)
 	double z = eps * Dmsqee * s12sq;
 	return (x + y) / 2. + z;
 }
-// From eq. 1.1
+// From eq. (1.1)
 double Pee(double a, double LE)
 {
 	double L4E = km_per_GeV_to_per_eV2 * LE / 4; // in eV^-2 now
@@ -50,7 +55,7 @@ double Pee(double a, double LE)
 	ProbabilityWarning W(&P);
 	return P;
 }
-// From eq. 2.14
+// From eq. (2.14)
 double Pemu(double a, double LE, double delta)
 {
 	double L4E = km_per_GeV_to_per_eV2 * LE / 4; // in eV^-2 now
