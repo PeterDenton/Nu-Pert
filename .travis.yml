@@ -13,8 +13,7 @@ compiler:
 
 script:
   - make
-  - ./Examples
-  - ./Figures
+  - make test
 
 after_success:
   - sudo pip install cpp-coveralls

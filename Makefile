@@ -19,5 +19,8 @@ obj/%.o: src/%.cpp
 
 -include $(AllObjects:.o=.d)
 
+test: $(Executables)
+	$(foreach exe,$(Executables),./$(exe);)
+
 clean:
 	rm -rf obj/*.o obj/*.d $(Executables)
