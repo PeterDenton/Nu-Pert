@@ -1,5 +1,9 @@
 language: cpp
 
+env:
+  global:
+    - CoverageFlags="--coverage"
+
 os:
   - linux
 # - osx
@@ -11,3 +15,7 @@ script:
   - make
   - ./Examples
   - ./Figures
+
+after_success:
+  - sudo pip install cpp-coveralls
+  - coveralls -b .
