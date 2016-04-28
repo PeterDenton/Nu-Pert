@@ -17,15 +17,15 @@ Second order is also included through a different code that provides about three
 These results contain all orders in the matter potential and in s<sub>13</sub>.
 
 ## About the code
-Equation numbers are provided where possible which reference [arXiv:1604.xxxxx](https://arxiv.org/abs/1604.xxxxx) unless otherwise stated.
+Equation numbers are provided where possible which reference [arXiv:1604.08167](https://arxiv.org/abs/1604.08167) unless otherwise stated.
 The various namespaces throughout the code refer to the various steps and means of calculating the transition probabilities.
 
 First, the `Hat` namespace is in reference to the intermediate basis after the 23 and 13 rotations.
-The `Hat` namespace refers to the results from the [arXiv:1505.01826](https://arxiv.org/abs/1505.01826) paper by S. Parke and H. Minakata and is described in this paper in subsection 2.3 of [arXiv:1604.xxxx](https://arxiv.org/abs/1604.xxxxx).
+The `Hat` namespace refers to the results from the [arXiv:1505.01826](https://arxiv.org/abs/1505.01826) paper by S. Parke and H. Minakata and is described in this paper in subsection 2.3 of [arXiv:1604.xxxx](https://arxiv.org/abs/1604.08167).
 This namespace contains the eigenvalues and the angle phi (see eqs. 2.3.3, 2.3.4, and 2.3.5).
 This namespace also includes the explicit formulas for P(nu<sub>e</sub> -&gt; nu<sub>e</sub>) and P(nu<sub>e</sub> -&gt; nu<sub>mu</sub>) in this basis (see eqs. (2.11) and (2.14) from [arXiv:1505.01826](https://arxiv.org/abs/1505.01826)).
 
-Next is the `Check` namespace which is in reference to the final basis after an additional 12 rotation described in subsection 2.4 of [arXiv:1604.xxxx](https://arxiv.org/abs/1604.xxxxx).
+Next is the `Check` namespace which is in reference to the final basis after an additional 12 rotation described in subsection 2.4 of [arXiv:1604.xxxx](https://arxiv.org/abs/1604.08167).
 This namespace contains the final eigenvalues at zeroth and second order (zeroth order also contains all first order corrections), and the angle psi (see eqs. 2.4.5, 3.1.3, 2.4.7, and 2.4.9).
 It also contains the W and V matrices as well as a transition probability calculation (see subsection 3.2 and eq. 4.0.1).
 The probability calculated in this namespace is based on multiplying out the V matrix.
@@ -50,4 +50,4 @@ P(nu<sub>a</sub> -&gt; nu<sub>b</sub>) is related to P(nu<sub>b</sub> -&gt; nu<s
 If you have questions or encounter any problems when running *Nu-Pert*, please use github's [issue tracker](https://github.com/PeterDenton/Nu-Pert/issues).
 
 This code is free to use, copy, distribute, and modify.
-If you use this code or any modification of this code, we request that you reference the relevant publication, [arXiv:1604.xxxxx](https://arxiv.org/abs/1604.xxxxx).
+If you use this code or any modification of this code, we request that you reference the relevant publication, [arXiv:1604.08167](https://arxiv.org/abs/1604.08167).
