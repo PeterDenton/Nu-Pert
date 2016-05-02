@@ -76,5 +76,5 @@ double Pemu(double a, double LE, double delta)
 	ProbabilityWarning W(&P);
 	return P;
 }
-}; // namespace Hat
+} // namespace Hat
 

@@ -10,6 +10,7 @@
 #include "GF.h"
 #include "Experiment.h"
 #include "Progress.h"
+#include "Tilde.h"
 
 namespace Figures
 {
@@ -118,6 +119,29 @@ void Pmu2e_Precision()
 	} // E
 	data.close();
 }
+void Eigenvalues_Bases()
+{
+	double a;
+	std::ofstream data[2];
+	data[0].open("data/Eigenvalues_Bases_NO.txt");
+	data[1].open("data/Eigenvalues_Bases_IO.txt");
+
+	for (int i = 0; i < 2; i++)
+	{
+		set_ordering(i == 0);
+		for (double Y = -40; Y <= 40; Y += 0.01)
+		{
+			a = Y * Y_to_a;
+
+			data[i] << Y << " " << Tilde::la(a) << " " << Tilde::lb(a) << " " << Tilde::lc(a) << " ";
+			data[i] << Hat::lm(a) << " " << Hat::l0(a) << " " << Hat::lp(a) << " ";
+			data[i] << Check::l10(a) << " " << Check::l20(a) << " " << Check::l30(a) << " ";
+
+			data[i] << std::endl;
+		}
+		data[i].close();
+	}
+}
 } // namespace Figures
 int main()
 {
@@ -125,6 +149,8 @@ int main()
 	Figures::Expansion_Parameter();
 	Figures::Phases();
 	Figures::Pmu2e_Precision();
+
+	Figures::Eigenvalues_Bases();
 
 	return 0;
 }
