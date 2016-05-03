@@ -11,6 +11,7 @@
 #include "GF.h"
 #include "Progress.h"
 #include "Hat.h"
+#include "Check.h"
 
 namespace Verify
 {
@@ -23,7 +24,7 @@ void Precision_Scan(double (*P_To_Verify)(int, int, double, double, double, int)
 	double YerhoE_max = 40;
 	double a_max = Y_to_a * YerhoE_max;
 	double LE_max = 2500;
-	int N_Steps = 40;
+	int N_Steps = 10;
 	std::ofstream out_file("data/Precision_Scan.txt", std::fstream::app);
 
 	std::string flavor_names[3] = {"e ", "mu", "tau"};
