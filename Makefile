@@ -1,10 +1,11 @@
 CC=g++
 CFlags=-c -Wall -O3 -std=c++0x -MMD
+#CoverageFlags=--coverage
 
 Sources=$(wildcard src/*.cpp)
 IncludeDir=./include
 AllObjects=$(addprefix obj/,$(notdir $(Sources:.cpp=.o)))
-Executables=Examples Figures
+Executables=Examples Figures Verify
 Objects=$(filter-out $(addprefix obj/,$(Executables:=.o)),$(AllObjects))
 
 all: $(Sources) $(Executables)

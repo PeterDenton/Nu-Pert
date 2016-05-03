@@ -145,11 +145,13 @@ void Eigenvalues_Bases()
 } // namespace Figures
 int main()
 {
+	// Paper figures
 	Figures::Eigenvalues();
 	Figures::Expansion_Parameter();
 	Figures::Phases();
 	Figures::Pmu2e_Precision();
 
+	// Additional figures for talks
 	Figures::Eigenvalues_Bases();
 
 	return 0;
