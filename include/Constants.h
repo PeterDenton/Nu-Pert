@@ -31,8 +31,8 @@ extern int normal_sign;
 void set_ordering(bool _normal); // default is set to true (normal)
 
 Matrix<std::complex<double> > U23(double delta, double angle = t23);
-Matrix<double> U13(double angle = t13);
-Matrix<double> U12(double angle = t12);
+Matrix<std::complex<double> > U13(double angle = t13);
+Matrix<std::complex<double> > U12(double angle = t12);
 
 Matrix<std::complex<double> > UMNS(double delta);
 

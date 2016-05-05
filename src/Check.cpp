@@ -102,11 +102,11 @@ double Jrm(double a)
 {
 	return c23 * s23 * pow(cos(Hat::phi(a)), 2) * sin(Hat::phi(a)) * cos(psi(a)) * sin(psi(a));
 }
-Matrix<double> W(double a, int order)
+Matrix<std::complex<double> > W(double a, int order)
 {
 	assert (order >= 0 && order <= 2); // order valid for 0, 1, 2
 
-	Matrix<double> W(3, 3);
+	Matrix<std::complex<double> > W(3, 3);
 	double e31, e32, coef;
 
 	switch (order)
@@ -139,15 +139,15 @@ Matrix<double> W(double a, int order)
 // See eq. 2.5.2
 Matrix<std::complex<double> > UMNSm(double a, double delta)
 {
-	return U23(delta) * double2complex(U13(Hat::phi(a)) * U12(psi(a)));
+	return U23(delta) * U13(Hat::phi(a)) * U12(psi(a));
 }
 // See eq. 3.2.3
 Matrix<std::complex<double> > V(double a, double delta, int order)
 {
 	assert (order >= 0 && order <= 2); // order valid for 0, 1, 2
-	Matrix<double> W = Check::W(a, order);
+	Matrix<std::complex<double> > W = Check::W(a, order);
 
-	return UMNSm(a, delta) * double2complex(W);
+	return UMNSm(a, delta) * W;
 }
 std::complex<double> Talphabetai(int alpha, int beta, int i, double a, double delta, int order)
 {

@@ -33,11 +33,11 @@ double Dlcb(double a)
 {
 	return lc(a) - lb(a);
 }
-Matrix<double> W(double a, int order)
+Matrix<std::complex<double> > W(double a, int order)
 {
 	assert (order >= 0 && order <= 1); // order valid for 0, 1
 
-	Matrix<double> W(3, 3);
+	Matrix<std::complex<double> > W(3, 3);
 	double coef;
 
 	switch (order)
@@ -66,9 +66,9 @@ Matrix<std::complex<double> > UMNSm(double a, double delta)
 Matrix<std::complex<double> > V(double a, double delta, int order)
 {
 	assert (order >= 0 && order <= 1); // order valid for 0, 1
-	Matrix<double> W = Tilde::W(a, order);
+	Matrix<std::complex<double> > W = Tilde::W(a, order);
 
-	return UMNSm(a, delta) * double2complex(W);
+	return UMNSm(a, delta) * W;
 }
 std::complex<double> Talphabetai(int alpha, int beta, int i, double a, double delta, int order)
 {

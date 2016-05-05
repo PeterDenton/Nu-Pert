@@ -23,7 +23,7 @@ double Dlp0(double a);
 double Pee(double a, double LE);
 double Pemu(double a, double LE, double delta);
 
-Matrix<double> W(double a, int order = 1);
+Matrix<std::complex<double> > W(double a, int order = 1);
 Matrix<std::complex<double> > V(double a, double delta, int order = 1);
 Matrix<std::complex<double> > UMNSm(double a, double delta);
 

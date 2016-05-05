@@ -34,6 +34,6 @@ class Matrix
 		void Set_all(T value);
 };
 
-Matrix<std::complex<double> > double2complex(Matrix<double> Matrix); // converts a double to a complex<double>
+//Matrix<std::complex<double> > double2complex(Matrix<double> Matrix); // converts a double to a complex<double>
 
 #endif

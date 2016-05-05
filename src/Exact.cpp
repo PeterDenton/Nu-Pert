@@ -190,8 +190,8 @@ Matrix<std::complex<double> > UMNSm(double a, double delta)
 	double t23m = atan2(sqrt(s23msq(a, delta)), sqrt(c23msq(a, delta)));
 	double deltam = atan2(sdeltam(a, delta), cdeltam(a, delta));
 
-	Matrix<std::complex<double> > U12m = double2complex(U12(t12m));
-	Matrix<std::complex<double> > U13m = double2complex(U13(t13m));
+	Matrix<std::complex<double> > U12m = U12(t12m);
+	Matrix<std::complex<double> > U13m = U13(t13m);
 	Matrix<std::complex<double> > U23m = U23(deltam, t23m);
 
 	return U23m * U13m * U12m;

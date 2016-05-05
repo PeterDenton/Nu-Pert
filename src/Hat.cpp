@@ -89,11 +89,11 @@ double Pemu(double a, double LE, double delta)
 	ProbabilityWarning W(&P);
 	return P;
 }
-Matrix<double> W(double a, int order)
+Matrix<std::complex<double> > W(double a, int order)
 {
 	assert (order >= 0 && order <= 1); // order valid for 0, 1
 
-	Matrix<double> W(3, 3);
+	Matrix<std::complex<double> > W(3, 3);
 	double c = cos(phi(a) - t13);
 	double s = sin(phi(a) - t13);
 	double coef = eps * c12 * s12 * Dmsqee;
@@ -115,14 +115,14 @@ Matrix<double> W(double a, int order)
 }
 Matrix<std::complex<double> > UMNSm(double a, double delta)
 {
-	return U23(delta) * double2complex(U13(phi(a)));
+	return U23(delta) * U13(phi(a));
 }
 Matrix<std::complex<double> > V(double a, double delta, int order)
 {
 	assert (order >= 0 && order <= 1); // order valid for 0, 1
-	Matrix<double> W = Hat::W(a, order);
+	Matrix<std::complex<double> > W = Hat::W(a, order);
 
-	return UMNSm(a, delta) * double2complex(W);
+	return UMNSm(a, delta) * W;
 }
 std::complex<double> Talphabetai(int alpha, int beta, int i, double a, double delta, int order)
 {

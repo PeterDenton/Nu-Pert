@@ -124,7 +124,7 @@ void Matrix<T>::Hermitian()
 	for (std::size_t i = 0; i < rows; i++)
 	{
 		for (std::size_t j = 0; j < cols; j++)
-			buffer[Get_index(i, j)] = static_cast<T>(std::conj(tmp[Get_index(j, i)]));
+			buffer[Get_index(i, j)] = std::conj(tmp[Get_index(j, i)]);
 	}
 	delete [] tmp;
 }
@@ -162,19 +162,4 @@ void Matrix<T>::Set_all(T value)
 		buffer[i] = value;
 }
 
-Matrix<std::complex<double> > double2complex(const Matrix<double> old_matrix) // converts a double to a complex<double>
-{
-	Matrix<std::complex<double> > new_matrix(old_matrix.Get_rows(), old_matrix.Get_cols());
-
-	for (std::size_t i = 0; i < old_matrix.Get_rows(); i++)
-	{
-		for (std::size_t j = 0; j < old_matrix.Get_cols(); j++)
-		{
-			new_matrix(i, j) = old_matrix(i, j);
-		}
-	}
-	return new_matrix;
-}
-
-template class Matrix<double>;
 template class Matrix<std::complex<double> >;

@@ -29,7 +29,7 @@ double psi(double a);
 
 double Jrm(double a);
 
-Matrix<double> W(double a, int order = 1);
+Matrix<std::complex<double> > W(double a, int order = 1);
 Matrix<std::complex<double> > V(double a, double delta, int order = 1);
 Matrix<std::complex<double> > UMNSm(double a, double delta);
 

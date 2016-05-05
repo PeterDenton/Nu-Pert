@@ -68,9 +68,9 @@ Matrix<std::complex<double> > U23(double delta, double angle)
 	return ret;
 }
 // See eq. 2.1.4
-Matrix<double> U13(double angle)
+Matrix<std::complex<double> > U13(double angle)
 {
-	Matrix<double> ret(3, 3);
+	Matrix<std::complex<double> > ret(3, 3);
 	ret(0, 0) = cos(angle);
 	ret(0, 2) = sin(angle);
 	ret(1, 1) = 1;
@@ -79,9 +79,9 @@ Matrix<double> U13(double angle)
 	return ret;
 }
 // See eq. 2.1.4
-Matrix<double> U12(double angle)
+Matrix<std::complex<double> > U12(double angle)
 {
-	Matrix<double> ret(3, 3);
+	Matrix<std::complex<double> > ret(3, 3);
 	ret(0, 0) = cos(angle);
 	ret(0, 1) = sin(angle);
 	ret(1, 0) = -sin(angle);
@@ -92,5 +92,5 @@ Matrix<double> U12(double angle)
 // See before eq. 2.1.4
 Matrix<std::complex<double> > UMNS(double delta)
 {
-	return U23(delta) * double2complex(U13() * U12());
+	return U23(delta) * U13() * U12();
 }
