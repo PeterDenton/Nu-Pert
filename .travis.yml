@@ -6,10 +6,11 @@ env:
 
 os:
   - linux
-# - osx
+  - osx
 
 compiler:
-  - gcc
+  - g++
+  - clang++
 
 script:
   - make

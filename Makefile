@@ -1,5 +1,4 @@
-CC=g++
-CFlags=-c -Wall -O3 -std=c++0x -MMD
+CFlags=-c -Wall -O3 -std=c++0x -pedantic -MMD
 #CoverageFlags=--coverage
 
 Sources=$(wildcard src/*.cpp)
@@ -12,11 +11,11 @@ all: $(Sources) $(Executables)
 
 $(Executables): $(AllObjects)
 	@mkdir -p data
-	$(CC) $(CoverageFlags) $(Objects) $(addprefix obj/,$@.o) -o $@
+	$(CXX) $(CoverageFlags) $(Objects) $(addprefix obj/,$@.o) -o $@
 
 obj/%.o: src/%.cpp
 	@mkdir -p $(@D)
-	$(CC) $(CFlags) $(CoverageFlags) -I$(IncludeDir) $< -o $@
+	$(CXX) $(CFlags) $(CoverageFlags) -I$(IncludeDir) $< -o $@
 
 -include $(AllObjects:.o=.d)
 

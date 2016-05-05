@@ -104,7 +104,7 @@ Matrix<T> Matrix<T>::operator * (const Matrix rhs) const
 template <class T>
 void Matrix<T>::Transpose()
 {
-	T tmp[rows * cols];
+	T * tmp = new T[rows * cols];
 	std::copy(buffer, buffer + rows * cols, tmp);
 
 	for (std::size_t i = 0; i < rows; i++)
@@ -112,12 +112,13 @@ void Matrix<T>::Transpose()
 		for (std::size_t j = 0; j < cols; j++)
 			buffer[Get_index(i, j)] = tmp[Get_index(j, i)];
 	}
+	delete [] tmp;
 }
 
 template <class T>
 void Matrix<T>::Hermitian()
 {
-	T tmp[rows * cols];
+	T * tmp = new T[rows * cols];
 	std::copy(buffer, buffer + rows * cols, tmp);
 
 	for (std::size_t i = 0; i < rows; i++)
@@ -125,6 +126,7 @@ void Matrix<T>::Hermitian()
 		for (std::size_t j = 0; j < cols; j++)
 			buffer[Get_index(i, j)] = std::conj(tmp[Get_index(j, i)]);
 	}
+	delete [] tmp;
 }
 
 template <class T>
