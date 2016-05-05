@@ -20,8 +20,8 @@ Warning::~Warning()
 		or (N_Warning <= 10000 and N_Warning % 1000 == 0) or N_Warning % 10000 == 0) and warn)
 		std::cerr << "Warning #" << Warning_number << ": " << name << ": " << message << std::endl;
 }
-IndexWarning::IndexWarning(int min, int max, double val)
-: min(min), max(max), val(val)
+IndexWarning::IndexWarning(int _min, int _max, double _val)
+: min(_min), max(_max), val(_val)
 {
 	name = "IndexWarning";
 	std::ostringstream tmp;
@@ -29,8 +29,8 @@ IndexWarning::IndexWarning(int min, int max, double val)
 	message = tmp.str();
 	N_IndexWarning++;
 }
-EdgeCaseWarning::EdgeCaseWarning(double min, double max, double val)
-: min(min), max(max), val(val)
+EdgeCaseWarning::EdgeCaseWarning(double _min, double _max, double _val)
+: min(_min), max(_max), val(_val)
 {
 	name = "EdgeCaseWarning";
 	std::ostringstream tmp;
