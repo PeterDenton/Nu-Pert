@@ -17,7 +17,7 @@ Warning::Warning()
 Warning::~Warning()
 {
 	if ((N_Warning <= 5 or (N_Warning <= 100 and N_Warning % 5 == 0) or (N_Warning <= 1000 and N_Warning % 100 == 0)
-		or (N_Warning <= 10000 and N_Warning % 1000 == 0) or N_Warning & 10000 == 0) and warn)
+		or (N_Warning <= 10000 and N_Warning % 1000 == 0) or N_Warning % 10000 == 0) and warn)
 		std::cerr << "Warning #" << Warning_number << ": " << name << ": " << message << std::endl;
 }
 IndexWarning::IndexWarning(int min, int max, double val)

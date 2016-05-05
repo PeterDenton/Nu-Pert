@@ -79,7 +79,7 @@ int main()
 	Verify::Precision_Scan(&Tilde::Palphabeta, 1, 1e-2);
 
 	out_file.open("data/Precision_Scan.txt", std::fstream::app);
-	out_file << "Hat basis (GF):" << std::endl;
+	out_file << "Hat basis:" << std::endl;
 	out_file.close();
 	Verify::Precision_Scan(&Hat::Palphabeta, 0, 1e-2);
 	Verify::Precision_Scan(&Hat::Palphabeta, 0, 1e-3);
