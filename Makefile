@@ -1,5 +1,12 @@
+ifeq ($(IsTravis),)
+	# leave CXX blank for travis, set it otherwise
+	CXX=g++
+else
+	# turn on coverage for travis
+	CXX=
+	CoverageFlags=--coverage
+endif
 CFlags=-c -Wall -O3 -std=c++0x -pedantic -MMD
-#CoverageFlags=--coverage
 
 Sources=$(wildcard src/*.cpp)
 IncludeDir=./include

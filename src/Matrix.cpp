@@ -124,7 +124,7 @@ void Matrix<T>::Hermitian()
 	for (std::size_t i = 0; i < rows; i++)
 	{
 		for (std::size_t j = 0; j < cols; j++)
-			buffer[Get_index(i, j)] = std::conj(tmp[Get_index(j, i)]);
+			buffer[Get_index(i, j)] = static_cast<T>(std::conj(tmp[Get_index(j, i)]));
 	}
 	delete [] tmp;
 }

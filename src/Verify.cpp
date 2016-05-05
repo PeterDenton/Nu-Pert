@@ -37,7 +37,6 @@ void Precision_Scan(double (*P_To_Verify)(int, int, double, double, double, int)
 		{
 			N_Total = 0;
 			N_Passed = 0;
-			std::cerr << flavor_names[alpha] << " -> " << flavor_names[beta] << ", ord = " << order << ", prec = " << Precision << " ..." << std::endl;
 			Progress_Bar Pbar;
 			for (double a = -a_max; a <= a_max; a += 2 * a_max / N_Steps)
 			{
@@ -70,7 +69,7 @@ void Precision_Scan(double (*P_To_Verify)(int, int, double, double, double, int)
 
 int main()
 {
-	set_Progress_Bar_visibility(true);
+//	set_Progress_Bar_visibility(true);
 
 	std::ofstream out_file("data/Precision_Scan.txt", std::fstream::out);
 	out_file << "Tilde basis:" << std::endl;
