@@ -3,7 +3,6 @@ ifeq ($(IsTravis),)
 	CXX=g++
 else
 	# turn on coverage for travis
-	CXX=
 	CoverageFlags=--coverage
 endif
 CFlags=-c -Wall -O3 -std=c++0x -pedantic -MMD
