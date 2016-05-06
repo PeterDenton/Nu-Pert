@@ -5,6 +5,7 @@ else
 	# turn on coverage for travis
 	CoverageFlags=--coverage
 endif
+
 CFlags=-c -Wall -O3 -std=c++0x -pedantic -MMD
 
 Sources=$(wildcard src/*.cpp)

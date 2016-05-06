@@ -80,6 +80,7 @@ void Expansion_Parameter()
 void Pmu2e_Precision()
 {
 	std::ofstream data("data/Pmu2e_Precision.txt");
+	set_ordering(true);
 
 	int exp_num = 0; // DUNE
 	double delta = 3 * M_PI / 2;
