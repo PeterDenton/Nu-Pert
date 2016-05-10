@@ -49,7 +49,7 @@ ProbabilityWarning::ProbabilityWarning(double *P)
 	{
 		name = "ProbabilityWarning";
 		std::ostringstream tmp;
-		tmp << "Probability = " << *P << ", is outside of [0, 1]. Setting P to " << (*P < 0 ? 0 : 1) << ".";
+		tmp << "P = " << *P << ", is outside of [0, 1]. Setting P to " << (*P < 0 ? 0 : 1) << ".";
 		*P = (*P < 0 ? 0 : 1);
 		message = tmp.str();
 		N_ProbabilityWarning++;
