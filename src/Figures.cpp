@@ -11,6 +11,7 @@
 #include "Experiment.h"
 #include "Progress.h"
 #include "Tilde.h"
+#include "Mixed.h"
 
 namespace Figures
 {
@@ -91,7 +92,7 @@ void Pmu2e_Precision()
 	double Einc = 1.001;
 
 	double Yrho, L, LE, a;
-	double P_exact, P_GF0, P_GF1, P_Check2;
+	double P_exact, P_GF0, P_GF1, P_Check2, P_Mixed, P_Mixed2;
 	set_experimental_parameters(exp_num, &Yrho, &L);
 
 	data << L << " ";
@@ -108,12 +109,16 @@ void Pmu2e_Precision()
 		P_GF0 = GF::Palphabeta(alpha, beta, a, LE, delta, 0);
 		P_GF1 = GF::Palphabeta(alpha, beta, a, LE, delta, 1);
 		P_Check2 = Check::Palphabeta(alpha, beta, a, LE, delta, 2);
+		P_Mixed = Mixed::Palphabeta(alpha, beta, a, LE, delta, 0);
+		P_Mixed2 = Mixed::Palphabeta(alpha, beta, a, LE, delta, 2);
 
 		data << E << " ";
 		data << P_exact << " ";
 		data << std::abs(1 - P_GF0 / P_exact) << " ";
 		data << std::abs(1 - P_GF1 / P_exact) << " ";
 		data << std::abs(1 - P_Check2 / P_exact) << " ";
+		data << std::abs(1 - P_Mixed / P_exact) << " ";
+		data << std::abs(1 - P_Mixed2 / P_exact) << " ";
 		data << std::endl;
 
 		Pbar.update(Emin, Emax, E, false);

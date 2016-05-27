@@ -10,17 +10,29 @@
 
 namespace Check
 {
-double l1(double a)
+double l1(double a, int order)
 {
-	return l10(a) + l12(a);
+	assert (order >= 0 && order <= 2); // order valid for 0, 1, 2
+	double l1 = l10(a);
+	if (order == 2)
+		l1 += l12(a);
+	return l1;
 }
-double l2(double a)
+double l2(double a, int order)
 {
-	return l20(a) + l22(a);
+	assert (order >= 0 && order <= 2); // order valid for 0, 1, 2
+	double l2 = l20(a);
+	if (order == 2)
+		l2 += l22(a);
+	return l2;
 }
-double l3(double a)
+double l3(double a, int order)
 {
-	return l30(a) + l32(a);
+	assert (order >= 0 && order <= 2); // order valid for 0, 1, 2
+	double l3 = l30(a);
+	if (order == 2)
+		l3 += l32(a);
+	return l3;
 }
 // See eq. 2.4.5
 double l10(double a)

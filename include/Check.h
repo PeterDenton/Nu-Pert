@@ -7,9 +7,9 @@
 
 namespace Check
 {
-double l1(double a);
-double l2(double a);
-double l3(double a);
+double l1(double a, int order = 2);
+double l2(double a, int order = 2);
+double l3(double a, int order = 2);
 
 double l10(double a);
 double l20(double a);
