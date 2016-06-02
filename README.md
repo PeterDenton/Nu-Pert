@@ -1,9 +1,9 @@
 Nu-Pert
 =
 
-| master | version | coverage |
-|:------:|:-------:|:--------:|
-|[![Build Status](https://travis-ci.org/PeterDenton/Nu-Pert.svg?branch=master)](https://travis-ci.org/PeterDenton/Nu-Pert)|[![GitHub Version](https://badge.fury.io/gh/PeterDenton%2FNu-Pert.svg)](http://badge.fury.io/gh/PeterDenton%2FNu-Pert)|[![Coverage Status](https://coveralls.io/repos/github/PeterDenton/Nu-Pert/badge.svg?branch=master)](https://coveralls.io/github/PeterDenton/Nu-Pert?branch=master)|
+| master | version | coverage | doi |
+|:------:|:-------:|:--------:|:---:|
+|[![Build Status](https://travis-ci.org/PeterDenton/Nu-Pert.svg?branch=master)](https://travis-ci.org/PeterDenton/Nu-Pert)|[![GitHub Version](https://badge.fury.io/gh/PeterDenton%2FNu-Pert.svg)](http://badge.fury.io/gh/PeterDenton%2FNu-Pert)|[![Coverage Status](https://coveralls.io/repos/github/PeterDenton/Nu-Pert/badge.svg?branch=master)](https://coveralls.io/github/PeterDenton/Nu-Pert?branch=master)|[![DOI](https://zenodo.org/badge/22071/PeterDenton/Nu-Pert.svg)](https://zenodo.org/badge/latestdoi/22071/PeterDenton/Nu-Pert)
 
 ## Overview
 This code provides a very precise, yet still useful analytically, means of calculating the neurtino transition probabilities in uniform matter densities.
