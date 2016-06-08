@@ -12,6 +12,7 @@
 #include "Progress.h"
 #include "Tilde.h"
 #include "Mixed.h"
+#include "Hyperbolas.h"
 
 namespace Figures
 {
@@ -29,7 +30,11 @@ void Eigenvalues()
 		for (double Y = -40; Y <= 40; Y += 0.01)
 		{
 			a = Y * Y_to_a;
-			data[i] << Y << " " << Check::l10(a) << " " << Check::l20(a) << " " << Check::l30(a) << std::endl;
+			data[i] << Y;
+			data[i] << " " << Exact::M1sq(a) << " " << Exact::M2sq(a) << " " << Exact::M3sq(a);
+//			data[i] << " " << Check::l10(a) << " " << Check::l20(a) << " " << Check::l30(a);
+			data[i] << " " << Hyperbolas::l1(a) << " " << Hyperbolas::l2(a) << " " << Hyperbolas::l3(a);
+			data[i] << std::endl;
 		}
 		data[i].close();
 	}
@@ -92,7 +97,7 @@ void Pmu2e_Precision()
 	double Einc = 1.001;
 
 	double Yrho, L, LE, a;
-	double P_exact, P_GF0, P_GF1, P_Check2, P_Mixed, P_Mixed2;
+	double P_exact, P_GF0, P_GF1, P_Check2, P_Mixed, P_Mixed2, P_Hyp;
 	set_experimental_parameters(exp_num, &Yrho, &L);
 
 	data << L << " ";
@@ -111,6 +116,7 @@ void Pmu2e_Precision()
 		P_Check2 = Check::Palphabeta(alpha, beta, a, LE, delta, 2);
 		P_Mixed = Mixed::Palphabeta(alpha, beta, a, LE, delta, 0);
 		P_Mixed2 = Mixed::Palphabeta(alpha, beta, a, LE, delta, 2);
+		P_Hyp = Hyperbolas::Palphabeta(alpha, beta, a, LE, delta);
 
 		data << E << " ";
 		data << P_exact << " ";
@@ -119,6 +125,7 @@ void Pmu2e_Precision()
 		data << std::abs(1 - P_Check2 / P_exact) << " ";
 		data << std::abs(1 - P_Mixed / P_exact) << " ";
 		data << std::abs(1 - P_Mixed2 / P_exact) << " ";
+		data << std::abs(1 - P_Hyp / P_exact) << " ";
 		data << std::endl;
 
 		Pbar.update(Emin, Emax, E, false);
@@ -148,6 +155,28 @@ void Eigenvalues_Bases()
 		data[i].close();
 	}
 }
+void Eigenvalue_Precision()
+{
+	double a;
+	std::ofstream data[2];
+	data[0].open("data/Eigenvalue_Precision_NO.txt");
+	data[1].open("data/Eigenvalue_Precision_IO.txt");
+
+	for (int i = 0; i < 1; i++) // only NO for now
+	{
+		set_ordering(i == 0);
+		for (double Y = -40; Y <= 40; Y += 0.01)
+		{
+			a = Y * Y_to_a;
+			data[i] << Y;
+			data[i] << " " << std::min(std::abs(1 - Hyperbolas::l1(a) / Exact::M1sq(a)), std::abs(Hyperbolas::l1(a) - Exact::M1sq(a)) / Dmsqee);
+			data[i] << " " << std::min(std::abs(1 - Hyperbolas::l2(a) / Exact::M2sq(a)), std::abs(Hyperbolas::l2(a) - Exact::M2sq(a)) / Dmsqee);
+			data[i] << " " << std::min(std::abs(1 - Hyperbolas::l3(a) / Exact::M3sq(a)), std::abs(Hyperbolas::l3(a) - Exact::M3sq(a)) / Dmsqee);
+			data[i] << std::endl;
+		}
+		data[i].close();
+	}
+}
 } // namespace Figures
 int main()
 {
@@ -160,5 +189,7 @@ int main()
 	// Additional figures for talks
 	Figures::Eigenvalues_Bases();
 
+	// Additional figures
+	Figures::Eigenvalue_Precision();
 	return 0;
 }
