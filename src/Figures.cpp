@@ -177,9 +177,37 @@ void Eigenvalue_Precision()
 		data[i].close();
 	}
 }
+void Reno50_Matter()
+{
+	std::ofstream data("data/Reno50_Matter.txt");
+
+	int alpha = 0;		// electron type
+	int beta = 0;		// electron type
+	double delta = 0;	// irrelevant
+	double Emin = 1.8e-3;	// 1 MeV in GeV
+	double Emax = 1.2e-2;	// 10 MeV in GeV
+	double L = 52.5;	// 52.5 km
+
+	double LE;
+	double Yrho = 2.6 * 0.5;
+	double a;
+	double P_vac, P_mat;
+
+	for (double E = Emin; E < Emax; E += (Emax - Emin) / 2000)
+	{
+		data << E << " ";
+		LE = L / (-E);				// -E for anti-nus
+		a = Yrho * (-E) * Y_to_a;	// -E for anti-nus
+		P_vac = Exact::Palphabeta(alpha, beta, 0, LE, delta);
+		P_mat = Exact::Palphabeta(alpha, beta, a, LE, delta);
+		data << P_mat - P_vac << std::endl;
+	}
+}
+
 } // namespace Figures
 int main()
 {
+/*
 	// Paper figures
 	Figures::Eigenvalues();
 	Figures::Expansion_Parameter();
@@ -191,5 +219,7 @@ int main()
 
 	// Additional figures
 	Figures::Eigenvalue_Precision();
+*/
+	Figures::Reno50_Matter();
 	return 0;
 }
