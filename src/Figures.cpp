@@ -13,6 +13,7 @@
 #include "Tilde.h"
 #include "Mixed.h"
 #include "Hyperbolas.h"
+#include "LWX.h"
 
 namespace Figures
 {
@@ -179,7 +180,9 @@ void Eigenvalue_Precision()
 }
 void Reno50_Matter()
 {
-	std::ofstream data("data/Reno50_Matter.txt");
+	std::ofstream data[2];
+	data[0].open("data/Reno50_Matter_NO.txt");
+	data[1].open("data/Reno50_Matter_IO.txt");
 
 	int alpha = 0;		// electron type
 	int beta = 0;		// electron type
@@ -191,17 +194,33 @@ void Reno50_Matter()
 	double LE;
 	double Yrho = 2.6 * 0.5;
 	double a;
-	double P_vac, P_mat;
+	double P_vac, P_mat, P0_vac, P0_mat, PLWX_vac, PLWX_mat;
 
-	for (double E = Emin; E < Emax; E += (Emax - Emin) / 2000)
+	for (int i = 0; i < 2; i++)
 	{
-		data << E << " ";
-		LE = L / (-E);				// -E for anti-nus
-		a = Yrho * (-E) * Y_to_a;	// -E for anti-nus
-		P_vac = Exact::Palphabeta(alpha, beta, 0, LE, delta);
-		P_mat = Exact::Palphabeta(alpha, beta, a, LE, delta);
-		data << P_mat - P_vac << std::endl;
-	}
+		set_ordering(i == 0);
+		for (double E = Emin; E < Emax; E += (Emax - Emin) / 2000)
+		{
+			LE = L / E;
+			a = Yrho * E * Y_to_a;
+
+			P_vac = Exact::Palphabeta(alpha, beta, 0, -LE, delta);	// -LE for anti-nus
+			P_mat = Exact::Palphabeta(alpha, beta, -a, -LE, delta);	// -a, -LE for anti-nus
+
+			P0_vac = GF::Palphabeta(alpha, beta, 0, -LE, delta, 0);	// -LE for anti-nus
+			P0_mat = GF::Palphabeta(alpha, beta, -a, -LE, delta, 0);	// -a, -LE for anti-nus
+
+			PLWX_vac = LWX::Pee(0, LE);	// formulas are already for anti-nus
+			PLWX_mat = LWX::Pee(a, LE);	// formulas are already for anti-nus
+
+			data[i] << E << " ";
+			data[i] << P_mat - P_vac << " ";
+			data[i] << P0_mat - P0_vac << " ";
+			data[i] << PLWX_mat - PLWX_vac << " ";
+			data[i] << std::endl;
+		} // E
+		data[i].close();
+	} // i, ordering
 }
 
 } // namespace Figures
