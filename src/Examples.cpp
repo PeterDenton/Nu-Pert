@@ -7,6 +7,7 @@
 #include "Experiment.h"
 #include "Check.h"
 #include "Exact.h"
+#include "First_Peak.h"
 
 // Calculates P(nubar_mu->nubar_e) for DUNE parameters
 void Example1()
@@ -42,7 +43,6 @@ void Example1()
 	std::cout << "P(nubar_mu->nubar_e) at second order: ";
 	std::cout << P << std::endl;
 }
-
 void Example2()
 {
 	std::cout << "==== Example 2 ====" << std::endl;
@@ -61,9 +61,7 @@ void Example2()
 	double P_mat = Exact::Palphabeta(alpha, beta, a, LE, delta);
 
 	std::cout << P_mat - P_vac << std::endl;
-
 }
-
 int main()
 {
 	Example1();

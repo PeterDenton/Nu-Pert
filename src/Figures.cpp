@@ -14,6 +14,7 @@
 #include "Mixed.h"
 #include "Hyperbolas.h"
 #include "LWX.h"
+#include "First_Peak.h"
 
 namespace Figures
 {
@@ -222,7 +223,30 @@ void Reno50_Matter()
 		data[i].close();
 	} // i, ordering
 }
+void FP_Line()
+{
+	std::ofstream data[2];
+	data[0].open("data/FP_Line_NO.txt");
+	data[1].open("data/FP_Line_IO.txt");
 
+	int alpha = 1;
+	int beta = 0;
+	double Yrho = 1.4;
+	bool max = true;
+	double m, b;
+
+	for (int i = 0; i < 2; i++)
+	{
+		set_ordering(i == 0);
+		for (double delta = 0; delta <= 2 * M_PI; delta += 2 * M_PI / 40)
+		{
+			FP_line(alpha, beta, Yrho, delta, max, &m, &b);
+			data[i] << delta << " " << m << " " << b << std::endl;
+		} // delta
+		data[i].close();
+	} // i, ordering
+
+}
 } // namespace Figures
 int main()
 {
@@ -238,7 +262,8 @@ int main()
 
 	// Additional figures
 	Figures::Eigenvalue_Precision();
-*/
 	Figures::Reno50_Matter();
+*/
+	Figures::FP_Line();
 	return 0;
 }

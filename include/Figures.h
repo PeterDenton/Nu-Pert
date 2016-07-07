@@ -11,6 +11,7 @@ void Pmu2e_Precision();		// outputs E, P_exact; and the absolute value of the fr
 void Eigenvalues_Bases();	// outputs Ye*rho*E, lambda{a,b,c,-,0,+,1,2,3}
 void Eigenvalue_Precision();
 void Reno50_Matter();		// Matter effect at Reno50
+void FP_Line();
 } // namespace Figures
 
 #endif
