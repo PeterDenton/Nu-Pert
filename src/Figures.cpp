@@ -164,16 +164,38 @@ void Eigenvalue_Precision()
 	data[0].open("data/Eigenvalue_Precision_NO.txt");
 	data[1].open("data/Eigenvalue_Precision_IO.txt");
 
+	double l10, l20, l30;
+	double l12, l22, l32;
+	double M1sq, M2sq, M3sq;
+	int order;
 	for (int i = 0; i < 1; i++) // only NO for now
 	{
 		set_ordering(i == 0);
-		for (double Y = -40; Y <= 40; Y += 0.01)
+		for (double Y = -40; Y <= 40; Y += 0.011)
 		{
 			a = Y * Y_to_a;
+
+			order = 0;
+			l10 = Check::l1(a, order);
+			l20 = Check::l2(a, order);
+			l30 = Check::l3(a, order);
+
+			order = 2;
+			l12 = Check::l1(a, order);
+			l22 = Check::l2(a, order);
+			l32 = Check::l3(a, order);
+
+			M1sq = Exact::M1sq(a);
+			M2sq = Exact::M2sq(a);
+			M3sq = Exact::M3sq(a);
+
 			data[i] << Y;
-			data[i] << " " << std::min(std::abs(1 - Hyperbolas::l1(a) / Exact::M1sq(a)), std::abs(Hyperbolas::l1(a) - Exact::M1sq(a)) / Dmsqee);
-			data[i] << " " << std::min(std::abs(1 - Hyperbolas::l2(a) / Exact::M2sq(a)), std::abs(Hyperbolas::l2(a) - Exact::M2sq(a)) / Dmsqee);
-			data[i] << " " << std::min(std::abs(1 - Hyperbolas::l3(a) / Exact::M3sq(a)), std::abs(Hyperbolas::l3(a) - Exact::M3sq(a)) / Dmsqee);
+			data[i] << " " << std::abs(1 - l10 / M1sq);
+			data[i] << " " << std::abs(1 - l20 / M2sq);
+			data[i] << " " << std::abs(1 - l30 / M3sq);
+			data[i] << " " << std::abs(1 - l12 / M1sq);
+			data[i] << " " << std::abs(1 - l22 / M2sq);
+			data[i] << " " << std::abs(1 - l32 / M3sq);
 			data[i] << std::endl;
 		}
 		data[i].close();
@@ -263,7 +285,8 @@ int main()
 	// Additional figures
 	Figures::Eigenvalue_Precision();
 	Figures::Reno50_Matter();
-*/
 	Figures::FP_Line();
+*/
+	Figures::Eigenvalue_Precision();
 	return 0;
 }
