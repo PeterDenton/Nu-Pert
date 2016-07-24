@@ -12,7 +12,6 @@
 #include "Progress.h"
 #include "Tilde.h"
 #include "Mixed.h"
-#include "Hyperbolas.h"
 #include "LWX.h"
 #include "First_Peak.h"
 
@@ -34,8 +33,7 @@ void Eigenvalues()
 			a = Y * Y_to_a;
 			data[i] << Y;
 			data[i] << " " << Exact::M1sq(a) << " " << Exact::M2sq(a) << " " << Exact::M3sq(a);
-//			data[i] << " " << Check::l10(a) << " " << Check::l20(a) << " " << Check::l30(a);
-			data[i] << " " << Hyperbolas::l1(a) << " " << Hyperbolas::l2(a) << " " << Hyperbolas::l3(a);
+			data[i] << " " << Check::l10(a) << " " << Check::l20(a) << " " << Check::l30(a);
 			data[i] << std::endl;
 		}
 		data[i].close();
@@ -99,7 +97,7 @@ void Pmu2e_Precision()
 	double Einc = 1.001;
 
 	double Yrho, L, LE, a;
-	double P_exact, P_GF0, P_GF1, P_Check2, P_Mixed, P_Mixed2, P_Hyp;
+	double P_exact, P_GF0, P_GF1, P_Check2, P_Mixed, P_Mixed2;
 	set_experimental_parameters(exp_num, &Yrho, &L);
 
 	data << L << " ";
@@ -118,7 +116,6 @@ void Pmu2e_Precision()
 		P_Check2 = Check::Palphabeta(alpha, beta, a, LE, delta, 2);
 		P_Mixed = Mixed::Palphabeta(alpha, beta, a, LE, delta, 0);
 		P_Mixed2 = Mixed::Palphabeta(alpha, beta, a, LE, delta, 2);
-		P_Hyp = Hyperbolas::Palphabeta(alpha, beta, a, LE, delta);
 
 		data << E << " ";
 		data << P_exact << " ";
@@ -127,7 +124,6 @@ void Pmu2e_Precision()
 		data << std::abs(1 - P_Check2 / P_exact) << " ";
 		data << std::abs(1 - P_Mixed / P_exact) << " ";
 		data << std::abs(1 - P_Mixed2 / P_exact) << " ";
-		data << std::abs(1 - P_Hyp / P_exact) << " ";
 		data << std::endl;
 
 		Pbar.update(Emin, Emax, E, false);
@@ -254,6 +250,7 @@ void FP_Line()
 	int alpha = 1;
 	int beta = 0;
 	double Yrho = 1.4;
+	Yrho /= 2;
 	bool max = true;
 	double m, b;
 
@@ -285,8 +282,8 @@ int main()
 	// Additional figures
 	Figures::Eigenvalue_Precision();
 	Figures::Reno50_Matter();
-	Figures::FP_Line();
-*/
 	Figures::Eigenvalue_Precision();
+*/
+	Figures::FP_Line();
 	return 0;
 }
