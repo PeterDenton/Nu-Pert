@@ -137,7 +137,8 @@ double s12msq(double D)
 	double x = (pow(M2sq(D), 2) - alpha() * M2sq(D) + beta()) * DM31sq(D);
 	double s12msq_n = -x;
 	double s12msq_d = DM32sq(D) * (pow(M1sq(D), 2) - alpha() * M1sq(D) + beta()) - x;
-	return s12msq_n / s12msq_d;
+	double ssq = s12msq_n / s12msq_d;
+	return std::max(ssq, 0.);
 }
 double c12msq(double D)
 {
@@ -146,7 +147,8 @@ double c12msq(double D)
 // See eq. 48
 double s13msq(double D)
 {
-	return (pow(M3sq(D), 2) - alpha() * M3sq(D) + beta()) / (DM31sq(D) * DM32sq(D));
+	double ssq = (pow(M3sq(D), 2) - alpha() * M3sq(D) + beta()) / (DM31sq(D) * DM32sq(D));
+	return std::max(ssq, 0.);
 }
 double c13msq(double D)
 {
@@ -155,7 +157,8 @@ double c13msq(double D)
 // See eq. 49
 double s23msq(double D, double delta)
 {
-	return (pow(E(D), 2) * s23sq + pow(F(D), 2) * c23sq + 2 * E(D) * F(D) * c23 * s23 * cos(delta)) / (pow(E(D), 2) + pow(F(D), 2));
+	double ssq = (pow(E(D), 2) * s23sq + pow(F(D), 2) * c23sq + 2 * E(D) * F(D) * c23 * s23 * cos(delta)) / (pow(E(D), 2) + pow(F(D), 2));
+	return std::max(ssq, 0.);
 }
 double c23msq(double D, double delta)
 {

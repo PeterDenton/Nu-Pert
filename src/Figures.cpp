@@ -286,7 +286,7 @@ void FP_Vac()
 		{
 			L = First_Extremum_Exact(alpha, beta, E, Yrho, delta, max);
 			
-			data[i] << delta << " " << std::abs(1 - LE_SP(delta) / (L / E)) << std::endl;
+			data[i] << delta << " " << (1 - LE_SP(delta) / (L / E)) << std::endl;
 		} // delta
 		data[i].close();
 	} // i, ordering
