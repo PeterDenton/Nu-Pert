@@ -86,3 +86,11 @@ void FP_line(int alpha, int beta, double Yrho, double delta, bool max, double *m
 	double rsq;
 	Linear_Fit(FEE_x, FEE_y, 0.1, 5., 1e2, p, m, b, &rsq);
 }
+
+double LE_SP(double delta)
+{
+	double k = 8 * Jr * eps / (s23sq * pow(sin(2 * t13), 2));
+	double sd = sin(delta);
+	double cd = cos(delta);
+	return (4 / Dmsqee) * ((M_PI / 2) - (k / 2) * (sd + (M_PI / 2) * cd) / (1 + k * (cd - (M_PI / 2) * sd))) / km_per_GeV_to_per_eV2;
+}

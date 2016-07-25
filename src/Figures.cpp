@@ -264,6 +264,32 @@ void FP_Line()
 		} // delta
 		data[i].close();
 	} // i, ordering
+}
+void FP_Vac()
+{
+	std::ofstream data[2];
+	data[0].open("data/FP_Vac_NO.txt");
+	data[1].open("data/FP_Vac_IO.txt");
+
+	int alpha = 1;
+	int beta = 0;
+	double Yrho = 0;
+	double E = 1;
+	bool max = true;
+
+	double L;
+
+	for (int i = 0; i < 2; i++)
+	{
+		set_ordering(i == 0);
+		for (double delta = 0; delta <= 2 * M_PI; delta += (2 * M_PI) / 200)
+		{
+			L = First_Extremum_Exact(alpha, beta, E, Yrho, delta, max);
+			
+			data[i] << delta << " " << std::abs(1 - LE_SP(delta) / (L / E)) << std::endl;
+		} // delta
+		data[i].close();
+	} // i, ordering
 
 }
 } // namespace Figures
@@ -283,7 +309,8 @@ int main()
 	Figures::Eigenvalue_Precision();
 	Figures::Reno50_Matter();
 	Figures::Eigenvalue_Precision();
-*/
 	Figures::FP_Line();
+*/
+	Figures::FP_Vac();
 	return 0;
 }

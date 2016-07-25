@@ -12,6 +12,7 @@ void Eigenvalues_Bases();	// outputs Ye*rho*E, lambda{a,b,c,-,0,+,1,2,3}
 void Eigenvalue_Precision();
 void Reno50_Matter();		// Matter effect at Reno50
 void FP_Line();
+void FP_Vac();
 } // namespace Figures
 
 #endif

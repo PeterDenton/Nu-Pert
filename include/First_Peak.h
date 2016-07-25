@@ -12,4 +12,6 @@ double FEE_y(double E, const double *p);
 // finds the slope and y-int in the L vs L/E plane for a given CP phase
 void FP_line(int alpha, int beta, double Yrho, double delta, bool max, double *m, double *b);
 
+double LE_SP(double delta); // SP's solution attempt at L/E in vac
+
 #endif
