@@ -267,9 +267,8 @@ void FP_Line()
 }
 void FP_Vac()
 {
-	std::ofstream data[2];
-	data[0].open("data/FP_Vac_NO.txt");
-	data[1].open("data/FP_Vac_IO.txt");
+	std::ofstream data;
+	data.open("data/FP_Vac.txt");
 
 	int alpha = 1;
 	int beta = 0;
@@ -279,18 +278,18 @@ void FP_Vac()
 
 	double L;
 
-	for (int i = 0; i < 2; i++)
+	for (double delta = 0; delta <= 2 * M_PI; delta += (2 * M_PI) / 200)
 	{
-		set_ordering(i == 0);
-		for (double delta = 0; delta <= 2 * M_PI; delta += (2 * M_PI) / 200)
+		data << delta << " ";
+		for (int i = 0; i < 3; i++)
 		{
 			L = First_Extremum_Exact(alpha, beta, E, Yrho, delta, max);
 			
-			data[i] << delta << " " << (1 - LE_SP(delta) / (L / E)) << std::endl;
-		} // delta
-		data[i].close();
-	} // i, ordering
-
+			data << (1 - LE_SP1(delta, i) / (L / E)) << " ";
+		} // i, order
+		data << std::endl;
+	} // delta
+	data.close();
 }
 } // namespace Figures
 int main()

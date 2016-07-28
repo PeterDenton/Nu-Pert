@@ -29,6 +29,8 @@ const double t13 = asin(s13);
 
 // See eq. A.7.2
 const double Jr = c12 * s12 * c23 * s23 * c13sq * s13;
+// See Table 1
+const double Jrr = c12 * s12 * c23 * s23 * s13;
 
 // See eq. 2.2.3
 double Dmsqee = Dmsq31 - s12sq * Dmsq21;

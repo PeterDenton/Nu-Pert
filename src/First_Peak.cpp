@@ -87,10 +87,41 @@ void FP_line(int alpha, int beta, double Yrho, double delta, bool max, double *m
 	Linear_Fit(FEE_x, FEE_y, 0.1, 5., 1e2, p, m, b, &rsq);
 }
 
-double LE_SP(double delta)
+double LE_SP0(double delta, int order = 2)
 {
 	double k = 8 * Jr * eps / (s23sq * pow(sin(2 * t13), 2));
 	double sd = sin(delta);
 	double cd = cos(delta);
-	return (4 / (Dmsqee + Jr * Dmsq21)) * ((M_PI / 2) - (k / 2) * (sd + (M_PI / 2) * cd) * (1 - k * (cd - (M_PI / 2) * sd))) / km_per_GeV_to_per_eV2;
+
+	double alpha = 0;
+	switch (order)
+	{
+		case 2:
+			alpha = (k / 2) * (sd + (M_PI / 2) * cd) / (1 + k * (cd - (M_PI / 2) * sd));
+			break;
+		case 1:
+			alpha = (k / 2) * (sd + (M_PI / 2) * cd);
+			break;
+			
+	}
+	return (4 / Dmsqee) * ((M_PI / 2) - alpha) / km_per_GeV_to_per_eV2;
+}
+
+double LE_SP1(double delta, int order = 2)
+{
+	double sd = sin(delta);
+	double cd = cos(delta);
+	double a = 8 * Jr / (s23sq * pow(sin(2 * t13), 2));
+	double b = 4 * c13sq * s12sq * (c23sq * c12sq - 2 * Jrr * cd - s13sq * s23sq * c12sq) / (s23sq * pow(sin(2 * t13), 2));
+	double alpha = 0;
+	switch (order)
+	{
+		case 2:
+			alpha -= pow(eps, 2) * (b * M_PI - M_PI * s12sq * c12sq);
+			alpha -= pow(eps, 2) * a * (M_PI * c12sq * cd - (c12sq - s12sq) * pow(M_PI, 2) / 2);
+			alpha -= pow(eps * a, 2) * (sd + (M_PI / 2) * cd) * (cd - (M_PI / 2) * sd);
+		case 1:
+			alpha += eps * a * (sd + (M_PI / 2) * cd);
+	}
+	return (4 / Dmsqee) * ((M_PI / 2) - alpha / 2) / km_per_GeV_to_per_eV2;
 }

@@ -15,7 +15,8 @@ extern const double c12sq, c23sq, c13sq;
 extern const double c12, s12, c23, s23, c13, s13;
 extern const double t12, t23, t13;
 
-extern const double Jr; // reduced Jarlskog
+extern const double Jr;		// reduced Jarlskog
+extern const double Jrr;	// doubly reduced Jarlskog
 
 // for the perturbative calculation
 extern double Dmsqee;
