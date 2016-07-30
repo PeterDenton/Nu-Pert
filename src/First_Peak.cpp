@@ -26,6 +26,34 @@ double PL(double L, const double * p)
 	double Yrho = p[3];
 	double delta = p[4];
 	int sign = p[5];
+
+
+
+
+
+
+
+
+
+	double a = Yrho * E * Y_to_a;
+	double psi = Check::psi(a);
+	double phi = Hat::phi(a);
+	double cpsisq = pow(cos(psi), 2);
+	double spsisq = pow(sin(psi), 2);
+	double Dl21 = Check::Dl21(a);
+	double Dl31 = Check::Dl31(a);
+	double Dl32 = Check::Dl32(a);
+	double Dlpm = Hat::Dlpm(a);
+	double L4E = L / (4 * E) * km_per_GeV_to_per_eV2;
+	double x = cpsisq * pow(sin(L4E * Dl31), 2) + spsisq * pow(sin(L4E * Dl32), 2);
+	return sign * x;
+
+
+
+
+
+
+
 	return sign * Exact::Palphabeta(alpha, beta, Yrho * E * Y_to_a, L / E, delta);
 }
 double First_Extremum_Exact(int alpha, int beta, double E, double Yrho, double delta, bool max)
@@ -102,26 +130,45 @@ double LE_SP0(double delta, int order = 2)
 		case 1:
 			alpha = (k / 2) * (sd + (M_PI / 2) * cd);
 			break;
-			
 	}
 	return (4 / Dmsqee) * ((M_PI / 2) - alpha) / km_per_GeV_to_per_eV2;
 }
 
-double LE_SP1(double delta, int order = 2)
+double LE_SP1(double delta, double a, int order = 2)
 {
+	double phi = Hat::phi(a);
+	double psi = Check::psi(a);
+
+	double cphisq = pow(cos(phi), 2);
+	double sphisq = pow(sin(phi), 2);
+	double cpsisq = pow(cos(psi), 2);
+	double spsisq = pow(sin(psi), 2);
+
+	double Dlpm = Hat::Dlpm(a);
+	double Dl21 = Check::Dl21(a);
+
+	double Jrm = Check::Jrm(a);
+	double Jrrm = Check::Jrrm(a);
+	double epsm = Dl21 / Dlpm;
+
 	double sd = sin(delta);
 	double cd = cos(delta);
-	double a = 8 * Jr / (s23sq * pow(sin(2 * t13), 2));
-	double b = 4 * c13sq * s12sq * (c23sq * c12sq - 2 * Jrr * cd - s13sq * s23sq * c12sq) / (s23sq * pow(sin(2 * t13), 2));
+	double A = 8 * Jrm / (s23sq * pow(sin(2 * phi), 2));
+	double B = 4 * cphisq * spsisq * (c23sq * cpsisq - 2 * Jrrm * cd - sphisq * s23sq * cpsisq) / (s23sq * pow(sin(2 * phi), 2));
+
 	double alpha = 0;
 	switch (order)
 	{
 		case 2:
-			alpha -= pow(eps, 2) * (b * M_PI - M_PI * s12sq * c12sq);
-			alpha -= pow(eps, 2) * a * (M_PI * c12sq * cd - (c12sq - s12sq) * pow(M_PI, 2) / 2);
-			alpha -= pow(eps * a, 2) * (sd + (M_PI / 2) * cd) * (cd - (M_PI / 2) * sd);
+			alpha -= pow(epsm, 2) * (B * M_PI - M_PI * spsisq * cpsisq);
+			alpha -= pow(epsm, 2) * A * (M_PI * cpsisq * cd - (cpsisq - spsisq) * pow(M_PI, 2) / 2);
+			alpha -= pow(epsm * A, 2) * (sd + (M_PI / 2) * cd) * (cd - (M_PI / 2) * sd);
 		case 1:
-			alpha += eps * a * (sd + (M_PI / 2) * cd);
+			alpha += epsm * A * (sd + (M_PI / 2) * cd);
 	}
-	return (4 / Dmsqee) * ((M_PI / 2) - alpha / 2) / km_per_GeV_to_per_eV2;
+
+	alpha = pow(cos(phi - t13) * eps, 2) * s12sq * c12sq * M_PI;
+
+	return (4 / Dlpm) * ((M_PI / 2) - alpha / 2) / km_per_GeV_to_per_eV2;
 }
+

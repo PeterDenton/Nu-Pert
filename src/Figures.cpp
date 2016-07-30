@@ -285,11 +285,54 @@ void FP_Vac()
 		{
 			L = First_Extremum_Exact(alpha, beta, E, Yrho, delta, max);
 			
-			data << (1 - LE_SP1(delta, i) / (L / E)) << " ";
+			data << (1 - LE_SP1(delta, Yrho * E * Y_to_a, i) / (L / E)) << " ";
 		} // i, order
 		data << std::endl;
 	} // delta
 	data.close();
+}
+void FP_Mat()
+{
+	std::ofstream data;
+	data.open("data/FP_Mat.txt");
+
+	int alpha = 1;
+	int beta = 0;
+	double Yrho = 1.4;
+	double E = 2.5;
+	bool max = true;
+
+	double L;
+
+	for (double delta = 0; delta <= 2 * M_PI; delta += (2 * M_PI) / 200)
+	{
+		data << delta << " ";
+		for (int i = 0; i < 3; i++)
+		{
+			L = First_Extremum_Exact(alpha, beta, E, Yrho, delta, max);
+			
+			data << (1 - LE_SP1(delta, Yrho * E * Y_to_a, i) / (L / E)) << " ";
+		} // i, order
+		data << std::endl;
+	} // delta
+	data.close();
+
+
+	double a = Yrho * E * Y_to_a;
+	double psi = Check::psi(a);
+	double phi = Hat::phi(a);
+	double cpsisq = pow(cos(psi), 2);
+	double spsisq = pow(sin(psi), 2);
+	double Dl21 = Check::Dl21(a);
+	double Dl31 = Check::Dl31(a);
+	double Dl32 = Check::Dl32(a);
+	double Dlpm = Hat::Dlpm(a);
+	double L4E = L / (4 * E) * km_per_GeV_to_per_eV2;
+	double x = cpsisq * pow(sin(L4E * Dl31), 2) + spsisq * pow(sin(L4E * Dl32), 2);
+	double y = pow(sin(L4E * Dlpm), 2) + spsisq * cpsisq * pow(L4E * Dl21, 2) * cos(2 * Dlpm);
+	std::cout << "L = " << L << " " << x << " " << y << " " << 1 - x / y << std::endl;
+	std::cout << Dmsq21 / Dlpm << std::endl;
+	std::cout << cos(phi - t13) << std::endl;
 }
 } // namespace Figures
 int main()
@@ -309,7 +352,8 @@ int main()
 	Figures::Reno50_Matter();
 	Figures::Eigenvalue_Precision();
 	Figures::FP_Line();
-*/
 	Figures::FP_Vac();
+*/
+	Figures::FP_Mat();
 	return 0;
 }

@@ -28,6 +28,7 @@ double s2psi(double a);
 double psi(double a);
 
 double Jrm(double a);
+double Jrrm(double a);
 
 Matrix<std::complex<double> > W(double a, int order = 1);
 Matrix<std::complex<double> > V(double a, double delta, int order = 1);

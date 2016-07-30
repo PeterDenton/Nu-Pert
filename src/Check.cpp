@@ -114,6 +114,11 @@ double Jrm(double a)
 {
 	return c23 * s23 * pow(cos(Hat::phi(a)), 2) * sin(Hat::phi(a)) * cos(psi(a)) * sin(psi(a));
 }
+// See table 1
+double Jrrm(double a)
+{
+	return c23 * s23 * sin(Hat::phi(a)) * cos(psi(a)) * sin(psi(a));
+}
 Matrix<std::complex<double> > W(double a, int order)
 {
 	assert (order >= 0 && order <= 2); // order valid for 0, 1, 2
