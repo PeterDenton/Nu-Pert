@@ -27,33 +27,6 @@ double PL(double L, const double * p)
 	double delta = p[4];
 	int sign = p[5];
 
-
-
-
-
-
-
-
-
-	double a = Yrho * E * Y_to_a;
-	double psi = Check::psi(a);
-	double phi = Hat::phi(a);
-	double cpsisq = pow(cos(psi), 2);
-	double spsisq = pow(sin(psi), 2);
-	double Dl21 = Check::Dl21(a);
-	double Dl31 = Check::Dl31(a);
-	double Dl32 = Check::Dl32(a);
-	double Dlpm = Hat::Dlpm(a);
-	double L4E = L / (4 * E) * km_per_GeV_to_per_eV2;
-	double x = cpsisq * pow(sin(L4E * Dl31), 2) + spsisq * pow(sin(L4E * Dl32), 2);
-	return sign * x;
-
-
-
-
-
-
-
 	return sign * Exact::Palphabeta(alpha, beta, Yrho * E * Y_to_a, L / E, delta);
 }
 double First_Extremum_Exact(int alpha, int beta, double E, double Yrho, double delta, bool max)
@@ -161,13 +134,37 @@ double LE_SP1(double delta, double a, int order = 2)
 	{
 		case 2:
 			alpha -= pow(epsm, 2) * (B * M_PI - M_PI * spsisq * cpsisq);
-			alpha -= pow(epsm, 2) * A * (M_PI * cpsisq * cd - (cpsisq - spsisq) * pow(M_PI, 2) / 2);
+			alpha -= pow(epsm, 2) * A * (M_PI * cpsisq * cd - (cpsisq - spsisq) * sd * pow(M_PI, 2) / 4);
 			alpha -= pow(epsm * A, 2) * (sd + (M_PI / 2) * cd) * (cd - (M_PI / 2) * sd);
 		case 1:
 			alpha += epsm * A * (sd + (M_PI / 2) * cd);
 	}
 
-	alpha = pow(cos(phi - t13) * eps, 2) * s12sq * c12sq * M_PI;
+	return (4 / Dlpm) * ((M_PI / 2) - alpha / 2) / km_per_GeV_to_per_eV2;
+}
+double LE_SP2(double delta, double a, int order = 2)
+{
+	double phi = Hat::phi(a);
+
+	double Dlpm = Hat::Dlpm(a);
+	double Dl21 = Check::Dl21(a);
+
+	double D21p = (Dl21 / Dlpm) * (M_PI / 2);
+std::cout << D21p << " " << Dl21 / Dmsq21 << std::endl;
+
+	double epsm = Dmsq21 / Dlpm;
+
+	double sd = sin(delta);
+	double cd = cos(delta);
+	double ap = (sin(2 * phi) * cos(phi) * sin(2 * t23) * sin(2 * t12) / (s23sq * pow(sin(2 * phi), 2))) * (sin(D21p) / D21p);
+
+	double alpha = 0;
+	switch (order)
+	{
+		case 2:
+		case 1:
+			alpha += ap * epsm * (sd + (M_PI / 2) * cd);
+	}
 
 	return (4 / Dlpm) * ((M_PI / 2) - alpha / 2) / km_per_GeV_to_per_eV2;
 }

@@ -14,5 +14,6 @@ void FP_line(int alpha, int beta, double Yrho, double delta, bool max, double *m
 
 double LE_SP0(double delta, int order);
 double LE_SP1(double delta, double a, int order); // SP's solution attempt at L/E
+double LE_SP2(double delta, double a, int order); // SP's next solution attempt at L/E
 
 #endif
