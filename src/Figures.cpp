@@ -95,6 +95,7 @@ void Pmu2e_Precision()
 	double Emin = 0.1;
 	double Emax = 10;
 	double Einc = 1.001;
+	int nu_nubar = +1; // +1 -> nu, -1 -> nubar
 
 	double Yrho, L, LE, a;
 	double P_exact, P_GF0, P_GF1, P_Check2, P_Mixed, P_Mixed2;
@@ -107,8 +108,8 @@ void Pmu2e_Precision()
 	Progress_Bar Pbar;
 	for (double E = Emin; E <= Emax; E *= Einc)
 	{
-		LE = L / E;
-		a = Yrho * E * Y_to_a;
+		LE = nu_nubar * L / E;
+		a = nu_nubar * Yrho * E * Y_to_a;
 
 		P_exact = Exact::Palphabeta(alpha, beta, a, LE, delta);
 		P_GF0 = GF::Palphabeta(alpha, beta, a, LE, delta, 0);
@@ -330,9 +331,9 @@ int main()
 	// Paper figures
 	Figures::Eigenvalues();
 	Figures::Expansion_Parameter();
-	Figures::Phases();
+	Figures::Phases();*/
 	Figures::Pmu2e_Precision();
-
+/*
 	// Additional figures for talks
 	Figures::Eigenvalues_Bases();
 
@@ -341,8 +342,9 @@ int main()
 	Figures::Reno50_Matter();
 	Figures::Eigenvalue_Precision();
 	Figures::FP_Line();
-*/
+
 	Figures::FP_Vac();
 	Figures::FP_Mat();
+*/
 	return 0;
 }
