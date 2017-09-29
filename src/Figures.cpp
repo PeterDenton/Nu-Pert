@@ -88,14 +88,14 @@ void Pmu2e_Precision()
 	std::ofstream data("data/Pmu2e_Precision.txt");
 	set_ordering(true);
 
-	int exp_num = 0; // DUNE
-	double delta = 3 * M_PI / 2;
+	int exp_num = 1; // DUNE, NOvA, T2K
+	double delta = 0 * M_PI / 2;
 	int alpha = 1; // nu_mu
-	int beta = 0; // nu_e
+	int beta = 1; // nu_e
 	double Emin = 0.1;
-	double Emax = 10;
+	double Emax = 5;
 	double Einc = 1.001;
-	int nu_nubar = +1; // +1 -> nu, -1 -> nubar
+	int nu_nubar = -1; // +1 -> nu, -1 -> nubar
 
 	double Yrho, L, LE, a;
 	double P_exact, P_GF0, P_GF1, P_Check2, P_Mixed, P_Mixed2;
